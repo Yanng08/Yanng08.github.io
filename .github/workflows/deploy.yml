@@ -35,7 +35,8 @@ jobs:
             echo "BASE_PATH=/$REPO" >> "$GITHUB_ENV"
           fi
 
-      - run: npm ci
+      # 用 npm install 而非 npm ci：Windows 生成的 lock 文件可能缺 Linux 可选依赖条目，会导致 npm ci 报错
+      - run: npm install
       - run: npm run build
 
       - uses: actions/configure-pages@v5
