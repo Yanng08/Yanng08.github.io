@@ -26,6 +26,15 @@ const skills = [
   { category: "其他", items: ["英语", "写作"] },
 ];
 
+function SectionTitle({ children }: { children: React.ReactNode }) {
+  return (
+    <h2 className="flex items-center gap-2.5 text-xl font-semibold">
+      <span className="h-4 w-1 rounded-full bg-accent"></span>
+      {children}
+    </h2>
+  );
+}
+
 export default function ResumePage() {
   return (
     <div className="flex flex-col gap-10">
@@ -38,15 +47,20 @@ export default function ResumePage() {
       </header>
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">教育经历</h2>
+        <SectionTitle>教育经历</SectionTitle>
         <ul className="flex flex-col gap-4">
           {education.map((item) => (
-            <li key={item.school} className="flex flex-col gap-1">
+            <li
+              key={item.school}
+              className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+            >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="font-medium">
                   {item.school} · {item.degree}
                 </h3>
-                <span className="text-sm text-zinc-500">{item.period}</span>
+                <span className="font-mono text-xs text-zinc-500">
+                  {item.period}
+                </span>
               </div>
               <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                 {item.detail}
@@ -57,13 +71,18 @@ export default function ResumePage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">工作 / 实习经历</h2>
+        <SectionTitle>工作 / 实习经历</SectionTitle>
         <ul className="flex flex-col gap-4">
           {experience.map((item) => (
-            <li key={item.title} className="flex flex-col gap-1">
+            <li
+              key={item.title}
+              className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+            >
               <div className="flex flex-wrap items-baseline justify-between gap-2">
                 <h3 className="font-medium">{item.title}</h3>
-                <span className="text-sm text-zinc-500">{item.period}</span>
+                <span className="font-mono text-xs text-zinc-500">
+                  {item.period}
+                </span>
               </div>
               <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
                 {item.detail}
@@ -74,8 +93,8 @@ export default function ResumePage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">技能</h2>
-        <ul className="flex flex-col gap-3">
+        <SectionTitle>技能</SectionTitle>
+        <ul className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
           {skills.map((group) => (
             <li key={group.category} className="flex flex-wrap gap-2 text-sm">
               <span className="w-24 shrink-0 text-zinc-500">
@@ -90,26 +109,23 @@ export default function ResumePage() {
       </section>
 
       <section className="flex flex-col gap-4">
-        <h2 className="text-xl font-semibold">联系方式</h2>
-        <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-          邮箱：
+        <SectionTitle>联系方式</SectionTitle>
+        <div className="flex flex-wrap gap-3">
           <a
             href={`mailto:${site.email}`}
-            className="underline underline-offset-4"
+            className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
           >
             {site.email}
           </a>
-          {" · "}
-          GitHub：
           <a
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline underline-offset-4"
+            className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
           >
             {site.github}
           </a>
-        </p>
+        </div>
       </section>
     </div>
   );

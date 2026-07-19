@@ -29,20 +29,22 @@ export default async function PostPage({
 
   return (
     <article className="flex flex-col gap-8">
-      <header className="flex flex-col gap-3">
+      <header className="flex flex-col gap-4 border-b border-zinc-100 pb-8 dark:border-zinc-800/60">
         <Link
           href="/blog"
-          className="w-fit text-sm text-zinc-500 transition-colors hover:text-foreground"
+          className="w-fit text-sm text-zinc-500 transition-colors hover:text-accent"
         >
           ← 返回文章列表
         </Link>
-        <h1 className="text-3xl font-bold tracking-tight">{post.title}</h1>
+        <h1 className="text-4xl font-bold leading-tight tracking-tight">
+          {post.title}
+        </h1>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
-          <time>{post.date}</time>
+          <time className="font-mono text-xs">{post.date}</time>
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full bg-zinc-100 px-2 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+              className="rounded-full bg-accent/10 px-2 py-0.5 text-xs text-accent"
             >
               {tag}
             </span>
@@ -50,7 +52,7 @@ export default async function PostPage({
         </div>
       </header>
       <div
-        className="prose prose-zinc max-w-none dark:prose-invert"
+        className="prose prose-stone max-w-none dark:prose-invert prose-a:text-accent prose-headings:tracking-tight"
         dangerouslySetInnerHTML={{ __html: post.html }}
       />
     </article>

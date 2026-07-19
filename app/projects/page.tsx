@@ -12,15 +12,15 @@ export default function ProjectsPage() {
           项目列表在 <code className="text-sm">data/projects.ts</code> 中维护。
         </p>
       </header>
-      <ul className="flex flex-col gap-6">
+      <ul className="flex flex-col gap-5">
         {projects.map((project) => (
           <li
             key={project.name}
-            className="flex flex-col gap-3 rounded-xl border border-zinc-200 p-5 dark:border-zinc-800"
+            className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40"
           >
-            <div className="flex items-baseline justify-between gap-4">
+            <div className="flex items-center justify-between gap-4">
               <h2 className="text-lg font-semibold">{project.name}</h2>
-              <span className="shrink-0 text-sm text-zinc-500">
+              <span className="shrink-0 rounded-md bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
                 {project.year}
               </span>
             </div>
@@ -31,7 +31,7 @@ export default function ProjectsPage() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                  className="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-500 dark:border-zinc-700 dark:text-zinc-400"
                 >
                   {tag}
                 </span>
@@ -44,9 +44,9 @@ export default function ProjectsPage() {
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline underline-offset-4 transition-colors hover:text-foreground"
+                    className="font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
                   >
-                    在线预览
+                    在线预览 ↗
                   </a>
                 )}
                 {project.repo && (
@@ -54,9 +54,9 @@ export default function ProjectsPage() {
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="underline underline-offset-4 transition-colors hover:text-foreground"
+                    className="font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
                   >
-                    源代码
+                    源代码 ↗
                   </a>
                 )}
               </div>
