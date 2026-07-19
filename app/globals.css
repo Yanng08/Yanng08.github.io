@@ -5,6 +5,8 @@
   --background: #fbfbfa;
   --foreground: #1c1917;
   --accent: #4f46e5;
+  /* 幽影(Omen)风格烟雾背景，可在 public/ 下替换同名文件换成自己喜欢的图 */
+  --bg-image: url("/bg-light.jpg");
 }
 
 @media (prefers-color-scheme: dark) {
@@ -12,6 +14,7 @@
     --background: #0c0e13;
     --foreground: #e7e5e4;
     --accent: #818cf8;
+    --bg-image: url("/bg-dark.jpg");
   }
 }
 
@@ -23,6 +26,10 @@
 
 body {
   background: var(--background);
+  background-image: var(--bg-image);
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
   color: var(--foreground);
   /* 使用系统字体栈：本地构建无需访问 Google Fonts，中文回退友好 */
   font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto,
@@ -30,7 +37,7 @@ body {
     sans-serif;
 }
 
-/* 背景第一层：极光渐变光斑 */
+/* 背景第一层：极光渐变光斑（叠在烟雾图上做色调融合） */
 body::before {
   content: "";
   position: fixed;
@@ -40,17 +47,17 @@ body::before {
   background:
     radial-gradient(
       900px 500px at 8% -8%,
-      color-mix(in srgb, #6366f1 20%, transparent),
+      color-mix(in srgb, #6366f1 9%, transparent),
       transparent 60%
     ),
     radial-gradient(
       800px 460px at 92% -4%,
-      color-mix(in srgb, #d946ef 15%, transparent),
+      color-mix(in srgb, #d946ef 7%, transparent),
       transparent 60%
     ),
     radial-gradient(
       720px 520px at 50% 112%,
-      color-mix(in srgb, #06b6d4 11%, transparent),
+      color-mix(in srgb, #06b6d4 5%, transparent),
       transparent 62%
     );
 }
@@ -137,6 +144,28 @@ body::after {
 .animate-gradient {
   background-size: 200% auto;
   animation: gradient-x 7s ease infinite;
+}
+
+/* 角色缓慢上下浮动 */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-float {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-gradient,
+  .animate-float {
+    animation: none;
+  }
 }
 
 ::selection {
