@@ -1,8 +1,8 @@
 import Link from "next/link";
+import Image from "next/image";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/posts";
-import { OmenFigure } from "@/components/OmenFigure";
 import {
   ArrowRightIcon,
   BookOpenIcon,
@@ -73,8 +73,20 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="flex items-center justify-center">
-          <OmenFigure className="animate-float h-60 w-auto sm:h-80" />
+        <div className="relative flex items-center justify-center">
+          <div
+            aria-hidden="true"
+            className="absolute h-64 w-64 rounded-full bg-accent/25 blur-3xl sm:h-80 sm:w-80"
+          />
+          {/* 幽影官方立绘 © Riot Games，依据 Riot 粉丝内容政策非商业使用 */}
+          <Image
+            src="/omen.webp"
+            alt="无畏契约 · 幽影（Omen）"
+            width={1101}
+            height={1000}
+            priority
+            className="animate-float relative h-72 w-auto drop-shadow-2xl sm:h-96"
+          />
         </div>
       </section>
 
