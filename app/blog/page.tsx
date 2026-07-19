@@ -16,21 +16,17 @@ export default function BlogPage() {
           Markdown 文件即可发布。
         </p>
       </header>
-      <ul className="flex flex-col">
+      <ul className="grid gap-5 sm:grid-cols-2">
         {posts.map((post) => (
-          <li
-            key={post.slug}
-            className="border-b border-zinc-100 last:border-0 dark:border-zinc-800/60"
-          >
+          <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="group -mx-3 flex flex-col gap-1.5 rounded-xl px-3 py-4 transition-colors hover:bg-accent/5"
+              className="group flex h-full flex-col gap-2.5 rounded-2xl border border-zinc-200 bg-white/60 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md sm:p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
             >
-              <span className="text-lg font-medium transition-colors group-hover:text-accent">
-                {post.title}
-              </span>
-              <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
-                <time className="font-mono text-xs">{post.date}</time>
+              <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <time className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                  {post.date}
+                </time>
                 {post.tags.map((tag) => (
                   <span
                     key={tag}
@@ -40,8 +36,11 @@ export default function BlogPage() {
                   </span>
                 ))}
               </span>
+              <span className="text-lg font-medium leading-7 transition-colors group-hover:text-accent">
+                {post.title}
+              </span>
               {post.summary && (
-                <span className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                <span className="line-clamp-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
                   {post.summary}
                 </span>
               )}

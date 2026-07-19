@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { site } from "@/data/site";
+import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/posts";
 
 const sections = [
@@ -21,38 +22,66 @@ const sections = [
 ];
 
 export default function Home() {
-  const latestPosts = getAllPosts().slice(0, 3);
+  const posts = getAllPosts();
+  const latestPosts = posts.slice(0, 3);
 
   return (
-    <div className="flex flex-col gap-16">
-      <section className="flex flex-col items-start gap-5 pb-2 pt-8">
-        <span className="rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-xs font-medium text-accent">
-          欢迎来到我的个人网站
-        </span>
-        <h1 className="text-5xl font-bold tracking-tight">
-          <span className="bg-gradient-to-r from-accent to-fuchsia-500 bg-clip-text text-transparent">
-            {site.name}
+    <div className="flex flex-col gap-14 sm:gap-20">
+      <section className="grid items-center gap-10 pt-2 sm:pt-6 lg:grid-cols-[1.5fr_1fr]">
+        <div className="flex flex-col items-start gap-4 sm:gap-5">
+          <span className="rounded-full border border-accent/20 bg-accent/5 px-3 py-1 text-xs font-medium text-accent">
+            欢迎来到我的个人网站
           </span>
-        </h1>
-        <p className="text-xl text-zinc-600 dark:text-zinc-400">
-          {site.tagline}
-        </p>
-        <p className="max-w-xl leading-7 text-zinc-600 dark:text-zinc-400">
-          {site.description}
-        </p>
-        <div className="mt-2 flex gap-3">
-          <Link
-            href="/projects"
-            className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90"
-          >
-            查看项目
-          </Link>
-          <Link
-            href="/blog"
-            className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium transition hover:border-accent hover:text-accent dark:border-zinc-700"
-          >
-            读点文章
-          </Link>
+          <h1 className="text-4xl font-bold tracking-tight sm:text-5xl xl:text-6xl">
+            <span className="bg-gradient-to-r from-accent to-fuchsia-500 bg-clip-text text-transparent">
+              {site.name}
+            </span>
+          </h1>
+          <p className="text-lg text-zinc-600 sm:text-xl dark:text-zinc-400">
+            {site.tagline}
+          </p>
+          <p className="max-w-xl leading-7 text-zinc-600 dark:text-zinc-400">
+            {site.description}
+          </p>
+          <div className="mt-1 flex flex-wrap gap-3">
+            <Link
+              href="/projects"
+              className="rounded-full bg-accent px-5 py-2.5 text-sm font-medium text-white shadow-sm transition hover:opacity-90"
+            >
+              查看项目
+            </Link>
+            <Link
+              href="/blog"
+              className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium transition hover:border-accent hover:text-accent dark:border-zinc-700"
+            >
+              读点文章
+            </Link>
+          </div>
+        </div>
+
+        <div className="rounded-3xl border border-zinc-200 bg-white/60 p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-900/40">
+          <h2 className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
+            站点一览
+          </h2>
+          <div className="mt-4 grid grid-cols-2 gap-4">
+            <div>
+              <p className="text-3xl font-bold text-accent">{posts.length}</p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                篇文章
+              </p>
+            </div>
+            <div>
+              <p className="text-3xl font-bold text-accent">
+                {projects.length}
+              </p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                个项目
+              </p>
+            </div>
+          </div>
+          <p className="mt-5 border-t border-zinc-100 pt-4 text-xs leading-5 text-zinc-400 dark:border-zinc-800 dark:text-zinc-500">
+            2026 年建站 · Next.js 静态生成 · GitHub Pages 托管
+          </p>
         </div>
       </section>
 
@@ -61,7 +90,7 @@ export default function Home() {
           <Link
             key={section.href}
             href={section.href}
-            className="group rounded-2xl border border-zinc-200 bg-white/60 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40"
+            className="group rounded-2xl border border-zinc-200 bg-white/60 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md sm:p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
           >
             <h2 className="font-semibold">
               {section.title}
@@ -76,7 +105,7 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="flex flex-col gap-3">
+      <section className="flex flex-col gap-4">
         <div className="flex items-baseline justify-between px-1">
           <h2 className="flex items-center gap-2.5 text-xl font-semibold">
             <span className="h-4 w-1 rounded-full bg-accent"></span>
@@ -89,20 +118,24 @@ export default function Home() {
             全部文章 →
           </Link>
         </div>
-        <ul className="flex flex-col">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           {latestPosts.map((post) => (
             <li key={post.slug}>
               <Link
                 href={`/blog/${post.slug}`}
-                className="group -mx-3 flex flex-col gap-1 rounded-xl px-3 py-3 transition-colors hover:bg-accent/5"
+                className="group flex h-full flex-col gap-2 rounded-2xl border border-zinc-200 bg-white/60 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40"
               >
+                <time className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                  {post.date}
+                </time>
                 <span className="font-medium transition-colors group-hover:text-accent">
                   {post.title}
                 </span>
-                <span className="text-sm text-zinc-500 dark:text-zinc-400">
-                  <time className="font-mono text-xs">{post.date}</time>
-                  {post.summary ? ` · ${post.summary}` : ""}
-                </span>
+                {post.summary && (
+                  <span className="line-clamp-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400">
+                    {post.summary}
+                  </span>
+                )}
               </Link>
             </li>
           ))}

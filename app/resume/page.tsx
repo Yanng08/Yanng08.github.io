@@ -37,7 +37,7 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 export default function ResumePage() {
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-8 sm:gap-10">
       <header className="flex flex-col gap-2">
         <h1 className="text-3xl font-bold tracking-tight">个人简历</h1>
         <p className="text-zinc-600 dark:text-zinc-400">
@@ -46,87 +46,96 @@ export default function ResumePage() {
         </p>
       </header>
 
-      <section className="flex flex-col gap-4">
-        <SectionTitle>教育经历</SectionTitle>
-        <ul className="flex flex-col gap-4">
-          {education.map((item) => (
-            <li
-              key={item.school}
-              className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
-            >
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-medium">
-                  {item.school} · {item.degree}
-                </h3>
-                <span className="font-mono text-xs text-zinc-500">
-                  {item.period}
-                </span>
-              </div>
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {item.detail}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <div className="grid gap-8 sm:gap-10 lg:grid-cols-2">
+        <div className="flex flex-col gap-8 sm:gap-10">
+          <section className="flex flex-col gap-4">
+            <SectionTitle>教育经历</SectionTitle>
+            <ul className="flex flex-col gap-4">
+              {education.map((item) => (
+                <li
+                  key={item.school}
+                  className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="font-medium">
+                      {item.school} · {item.degree}
+                    </h3>
+                    <span className="font-mono text-xs text-zinc-500">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                    {item.detail}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
 
-      <section className="flex flex-col gap-4">
-        <SectionTitle>工作 / 实习经历</SectionTitle>
-        <ul className="flex flex-col gap-4">
-          {experience.map((item) => (
-            <li
-              key={item.title}
-              className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
-            >
-              <div className="flex flex-wrap items-baseline justify-between gap-2">
-                <h3 className="font-medium">{item.title}</h3>
-                <span className="font-mono text-xs text-zinc-500">
-                  {item.period}
-                </span>
-              </div>
-              <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
-                {item.detail}
-              </p>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="flex flex-col gap-4">
-        <SectionTitle>技能</SectionTitle>
-        <ul className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
-          {skills.map((group) => (
-            <li key={group.category} className="flex flex-wrap gap-2 text-sm">
-              <span className="w-24 shrink-0 text-zinc-500">
-                {group.category}
-              </span>
-              <span className="text-zinc-700 dark:text-zinc-300">
-                {group.items.join(" / ")}
-              </span>
-            </li>
-          ))}
-        </ul>
-      </section>
-
-      <section className="flex flex-col gap-4">
-        <SectionTitle>联系方式</SectionTitle>
-        <div className="flex flex-wrap gap-3">
-          <a
-            href={`mailto:${site.email}`}
-            className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
-          >
-            {site.email}
-          </a>
-          <a
-            href={site.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
-          >
-            {site.github}
-          </a>
+          <section className="flex flex-col gap-4">
+            <SectionTitle>工作 / 实习经历</SectionTitle>
+            <ul className="flex flex-col gap-4">
+              {experience.map((item) => (
+                <li
+                  key={item.title}
+                  className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+                >
+                  <div className="flex flex-wrap items-baseline justify-between gap-2">
+                    <h3 className="font-medium">{item.title}</h3>
+                    <span className="font-mono text-xs text-zinc-500">
+                      {item.period}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-6 text-zinc-600 dark:text-zinc-400">
+                    {item.detail}
+                  </p>
+                </li>
+              ))}
+            </ul>
+          </section>
         </div>
-      </section>
+
+        <div className="flex flex-col gap-8 sm:gap-10">
+          <section className="flex flex-col gap-4">
+            <SectionTitle>技能</SectionTitle>
+            <ul className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
+              {skills.map((group) => (
+                <li
+                  key={group.category}
+                  className="flex flex-wrap gap-2 text-sm"
+                >
+                  <span className="w-24 shrink-0 text-zinc-500">
+                    {group.category}
+                  </span>
+                  <span className="text-zinc-700 dark:text-zinc-300">
+                    {group.items.join(" / ")}
+                  </span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="flex flex-col gap-4">
+            <SectionTitle>联系方式</SectionTitle>
+            <div className="flex flex-wrap gap-3">
+              <a
+                href={`mailto:${site.email}`}
+                className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
+              >
+                {site.email}
+              </a>
+              <a
+                href={site.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
+              >
+                {site.github}
+              </a>
+            </div>
+          </section>
+        </div>
+      </div>
     </div>
   );
 }

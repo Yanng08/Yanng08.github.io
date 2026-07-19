@@ -28,7 +28,7 @@ export default async function PostPage({
   const post = await getPostBySlug(slug);
 
   return (
-    <article className="flex flex-col gap-8">
+    <article className="mx-auto flex w-full max-w-3xl flex-col gap-8">
       <header className="flex flex-col gap-4 border-b border-zinc-100 pb-8 dark:border-zinc-800/60">
         <Link
           href="/blog"
@@ -36,7 +36,7 @@ export default async function PostPage({
         >
           ← 返回文章列表
         </Link>
-        <h1 className="text-4xl font-bold leading-tight tracking-tight">
+        <h1 className="text-3xl font-bold leading-tight tracking-tight sm:text-4xl">
           {post.title}
         </h1>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">

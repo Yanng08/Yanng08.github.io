@@ -12,7 +12,7 @@ export default function ProjectsPage() {
           项目列表在 <code className="text-sm">data/projects.ts</code> 中维护。
         </p>
       </header>
-      <ul className="flex flex-col gap-5">
+      <ul className="grid gap-5 md:grid-cols-2">
         {projects.map((project) => (
           <li
             key={project.name}
@@ -24,7 +24,7 @@ export default function ProjectsPage() {
                 {project.year}
               </span>
             </div>
-            <p className="leading-7 text-zinc-600 dark:text-zinc-400">
+            <p className="flex-1 leading-7 text-zinc-600 dark:text-zinc-400">
               {project.description}
             </p>
             <div className="flex flex-wrap gap-2">

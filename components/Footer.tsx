@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 export function Footer() {
   return (
     <footer className="border-t border-zinc-200/70 dark:border-zinc-800/70">
-      <div className="mx-auto flex w-full max-w-3xl flex-col items-center gap-3 px-6 py-10 text-sm text-zinc-500 dark:text-zinc-400">
+      <div className="mx-auto flex w-full max-w-5xl flex-col items-center gap-3 px-4 py-10 text-sm text-zinc-500 sm:px-6 dark:text-zinc-400">
         <div className="flex gap-3">
           <a
             href={site.github}
@@ -20,7 +20,7 @@ export function Footer() {
             邮箱
           </a>
         </div>
-        <p>
+        <p className="text-center">
           © {new Date().getFullYear()} {site.name} · 由 Next.js 构建，托管于
           GitHub Pages
         </p>
