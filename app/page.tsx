@@ -1,5 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { getAllPosts } from "@/lib/posts";
@@ -73,49 +72,39 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="relative flex items-center justify-center">
-          <div
-            aria-hidden="true"
-            className="absolute h-64 w-64 rounded-full bg-accent/25 blur-3xl sm:h-80 sm:w-80"
-          />
-          {/* 幽影官方立绘 © Riot Games，依据 Riot 粉丝内容政策非商业使用 */}
-          <Image
-            src="/omen.webp"
-            alt="无畏契约 · 幽影（Omen）"
-            width={1101}
-            height={1000}
-            priority
-            className="animate-float relative h-72 w-auto drop-shadow-2xl sm:h-96"
-          />
-        </div>
-      </section>
-
-      <section className="glass flex flex-wrap items-center justify-between gap-x-6 gap-y-4 rounded-2xl px-6 py-4">
-        <div className="flex items-center gap-3">
-          <span className="icon-chip h-9 w-9 shrink-0">
-            <BookOpenIcon className="h-4 w-4" />
-          </span>
-          <p className="text-lg font-bold leading-6">
-            {posts.length}
-            <span className="ml-1 text-xs font-normal text-zinc-500 dark:text-zinc-400">
-              篇文章
-            </span>
+        <div className="glass rounded-3xl p-6">
+          <h2 className="flex items-center gap-2 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+            <SparklesIcon className="h-4 w-4 text-accent" />
+            站点一览
+          </h2>
+          <div className="mt-5 grid grid-cols-2 gap-4">
+            <div className="flex items-center gap-3">
+              <span className="icon-chip h-10 w-10 shrink-0">
+                <BookOpenIcon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-2xl font-bold">{posts.length}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  篇文章
+                </p>
+              </div>
+            </div>
+            <div className="flex items-center gap-3">
+              <span className="icon-chip h-10 w-10 shrink-0">
+                <FolderIcon className="h-5 w-5" />
+              </span>
+              <div>
+                <p className="text-2xl font-bold">{projects.length}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">
+                  个项目
+                </p>
+              </div>
+            </div>
+          </div>
+          <p className="mt-5 border-t border-zinc-900/5 pt-4 text-xs leading-5 text-zinc-400 dark:border-white/5 dark:text-zinc-500">
+            2026 年建站 · Next.js 静态生成 · GitHub Pages 托管
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <span className="icon-chip h-9 w-9 shrink-0">
-            <FolderIcon className="h-4 w-4" />
-          </span>
-          <p className="text-lg font-bold leading-6">
-            {projects.length}
-            <span className="ml-1 text-xs font-normal text-zinc-500 dark:text-zinc-400">
-              个项目
-            </span>
-          </p>
-        </div>
-        <p className="text-xs leading-5 text-zinc-400 dark:text-zinc-500">
-          2026 年建站 · Next.js 静态生成 · GitHub Pages 托管
-        </p>
       </section>
 
       <section className="grid gap-4 sm:grid-cols-3">

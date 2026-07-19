@@ -27,10 +27,6 @@ export function Footer() {
           © {new Date().getFullYear()} {site.name} · 由 Next.js 构建，托管于
           GitHub Pages
         </p>
-        <p className="max-w-lg text-center text-xs leading-5 text-zinc-400 dark:text-zinc-500">
-          《无畏契约》（VALORANT）及幽影（Omen）相关素材版权归 Riot Games
-          所有。本站为非商业个人粉丝项目，未获得 Riot Games 的认可、背书或赞助。
-        </p>
       </div>
     </footer>
   );
