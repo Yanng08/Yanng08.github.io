@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { projects } from "@/data/projects";
+import {
+  ArrowUpRightIcon,
+  CodeIcon,
+  FolderIcon,
+} from "@/components/icons";
 
 export const metadata: Metadata = { title: "项目" };
 
@@ -16,10 +21,15 @@ export default function ProjectsPage() {
         {projects.map((project) => (
           <li
             key={project.name}
-            className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-6 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md dark:border-zinc-800 dark:bg-zinc-900/40"
+            className="group glass flex flex-col gap-3 rounded-2xl p-6 transition-all hover:-translate-y-1 hover:shadow-lg"
           >
             <div className="flex items-center justify-between gap-4">
-              <h2 className="text-lg font-semibold">{project.name}</h2>
+              <div className="flex items-center gap-3">
+                <span className="icon-chip h-9 w-9 shrink-0">
+                  <FolderIcon className="h-4.5 w-4.5" />
+                </span>
+                <h2 className="text-lg font-semibold">{project.name}</h2>
+              </div>
               <span className="shrink-0 rounded-md bg-accent/10 px-2 py-0.5 text-xs font-medium text-accent">
                 {project.year}
               </span>
@@ -31,22 +41,23 @@ export default function ProjectsPage() {
               {project.tags.map((tag) => (
                 <span
                   key={tag}
-                  className="rounded-full border border-zinc-200 px-2.5 py-0.5 text-xs text-zinc-500 dark:border-zinc-700 dark:text-zinc-400"
+                  className="rounded-full border border-zinc-900/10 px-2.5 py-0.5 text-xs text-zinc-500 dark:border-white/10 dark:text-zinc-400"
                 >
                   {tag}
                 </span>
               ))}
             </div>
             {(project.link || project.repo) && (
-              <div className="flex gap-4 text-sm">
+              <div className="flex gap-4 border-t border-zinc-900/5 pt-3 text-sm dark:border-white/5">
                 {project.link && (
                   <a
                     href={project.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
+                    className="inline-flex items-center gap-1.5 font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
                   >
-                    在线预览 ↗
+                    <ArrowUpRightIcon className="h-4 w-4" />
+                    在线预览
                   </a>
                 )}
                 {project.repo && (
@@ -54,9 +65,10 @@ export default function ProjectsPage() {
                     href={project.repo}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
+                    className="inline-flex items-center gap-1.5 font-medium text-accent underline-offset-4 transition-opacity hover:underline hover:opacity-80"
                   >
-                    源代码 ↗
+                    <CodeIcon className="h-4 w-4" />
+                    源代码
                   </a>
                 )}
               </div>

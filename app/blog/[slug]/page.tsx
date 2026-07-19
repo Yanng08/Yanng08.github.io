@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts, getPostBySlug } from "@/lib/posts";
+import { CalendarIcon } from "@/components/icons";
 
 // 静态导出：只生成 generateStaticParams 返回的路径
 export const dynamicParams = false;
@@ -29,7 +30,7 @@ export default async function PostPage({
 
   return (
     <article className="mx-auto flex w-full max-w-3xl flex-col gap-8">
-      <header className="flex flex-col gap-4 border-b border-zinc-100 pb-8 dark:border-zinc-800/60">
+      <header className="flex flex-col gap-4 border-b border-zinc-900/5 pb-8 dark:border-white/5">
         <Link
           href="/blog"
           className="w-fit text-sm text-zinc-500 transition-colors hover:text-accent"
@@ -40,7 +41,10 @@ export default async function PostPage({
           {post.title}
         </h1>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400">
-          <time className="font-mono text-xs">{post.date}</time>
+          <time className="inline-flex items-center gap-1.5 font-mono text-xs">
+            <CalendarIcon className="h-3.5 w-3.5" />
+            {post.date}
+          </time>
           {post.tags.map((tag) => (
             <span
               key={tag}

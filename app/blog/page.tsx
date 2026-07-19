@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
+import { CalendarIcon } from "@/components/icons";
 
 export const metadata: Metadata = { title: "文章" };
 
@@ -21,10 +22,11 @@ export default function BlogPage() {
           <li key={post.slug}>
             <Link
               href={`/blog/${post.slug}`}
-              className="group flex h-full flex-col gap-2.5 rounded-2xl border border-zinc-200 bg-white/60 p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-accent/40 hover:shadow-md sm:p-6 dark:border-zinc-800 dark:bg-zinc-900/40"
+              className="group glass flex h-full flex-col gap-2.5 rounded-2xl p-5 transition-all hover:-translate-y-1 hover:shadow-lg sm:p-6"
             >
               <span className="flex flex-wrap items-center gap-x-3 gap-y-1">
-                <time className="font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                <time className="inline-flex items-center gap-1.5 font-mono text-xs text-zinc-400 dark:text-zinc-500">
+                  <CalendarIcon className="h-3.5 w-3.5" />
                   {post.date}
                 </time>
                 {post.tags.map((tag) => (

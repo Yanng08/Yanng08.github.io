@@ -30,24 +30,113 @@ body {
     sans-serif;
 }
 
-/* 顶部柔和光斑背景装饰 */
+/* 背景第一层：极光渐变光斑 */
 body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      900px 500px at 8% -8%,
+      color-mix(in srgb, #6366f1 20%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      800px 460px at 92% -4%,
+      color-mix(in srgb, #d946ef 15%, transparent),
+      transparent 60%
+    ),
+    radial-gradient(
+      720px 520px at 50% 112%,
+      color-mix(in srgb, #06b6d4 11%, transparent),
+      transparent 62%
+    );
+}
+
+/* 背景第二层：细网格（顶部渐隐）+ 噪点纹理 */
+body::after {
   content: "";
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(
-      640px 320px at 12% -6%,
-      color-mix(in srgb, var(--accent) 10%, transparent),
-      transparent 70%
+  background-image:
+    linear-gradient(
+      to right,
+      color-mix(in srgb, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
     ),
-    radial-gradient(
-      520px 280px at 88% -2%,
-      color-mix(in srgb, #d946ef 7%, transparent),
-      transparent 70%
-    );
+    linear-gradient(
+      to bottom,
+      color-mix(in srgb, var(--foreground) 5%, transparent) 1px,
+      transparent 1px
+    ),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='0.04'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size:
+    54px 54px,
+    54px 54px,
+    160px 160px;
+  -webkit-mask-image: radial-gradient(
+    ellipse 95% 70% at 50% 0%,
+    black 25%,
+    transparent 80%
+  );
+  mask-image: radial-gradient(
+    ellipse 95% 70% at 50% 0%,
+    black 25%,
+    transparent 80%
+  );
+}
+
+/* 玻璃拟态卡片 */
+.glass {
+  background: color-mix(in srgb, white 62%, transparent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid color-mix(in srgb, white 65%, transparent);
+  box-shadow:
+    0 1px 2px rgb(0 0 0 / 0.04),
+    0 12px 32px -16px rgb(0 0 0 / 0.12);
+}
+
+@media (prefers-color-scheme: dark) {
+  .glass {
+    background: color-mix(in srgb, #18181b 55%, transparent);
+    border-color: color-mix(in srgb, white 10%, transparent);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.35);
+  }
+}
+
+/* 渐变图标底托 */
+.icon-chip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--accent) 18%, transparent),
+    color-mix(in srgb, #d946ef 13%, transparent)
+  );
+  color: var(--accent);
+}
+
+/* 标题渐变文字缓慢流动 */
+@keyframes gradient-x {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.animate-gradient {
+  background-size: 200% auto;
+  animation: gradient-x 7s ease infinite;
 }
 
 ::selection {

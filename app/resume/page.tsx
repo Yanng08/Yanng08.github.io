@@ -1,5 +1,12 @@
 import type { Metadata } from "next";
 import { site } from "@/data/site";
+import {
+  BriefcaseIcon,
+  GitHubIcon,
+  GraduationCapIcon,
+  LayersIcon,
+  MailIcon,
+} from "@/components/icons";
 
 export const metadata: Metadata = { title: "简历" };
 
@@ -26,10 +33,16 @@ const skills = [
   { category: "其他", items: ["英语", "写作"] },
 ];
 
-function SectionTitle({ children }: { children: React.ReactNode }) {
+function SectionTitle({
+  icon,
+  children,
+}: {
+  icon: React.ReactNode;
+  children: React.ReactNode;
+}) {
   return (
     <h2 className="flex items-center gap-2.5 text-xl font-semibold">
-      <span className="h-4 w-1 rounded-full bg-accent"></span>
+      <span className="icon-chip h-8 w-8">{icon}</span>
       {children}
     </h2>
   );
@@ -49,12 +62,14 @@ export default function ResumePage() {
       <div className="grid gap-8 sm:gap-10 lg:grid-cols-2">
         <div className="flex flex-col gap-8 sm:gap-10">
           <section className="flex flex-col gap-4">
-            <SectionTitle>教育经历</SectionTitle>
+            <SectionTitle icon={<GraduationCapIcon className="h-4 w-4" />}>
+              教育经历
+            </SectionTitle>
             <ul className="flex flex-col gap-4">
               {education.map((item) => (
                 <li
                   key={item.school}
-                  className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+                  className="glass flex flex-col gap-1 rounded-2xl p-5"
                 >
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-medium">
@@ -73,12 +88,14 @@ export default function ResumePage() {
           </section>
 
           <section className="flex flex-col gap-4">
-            <SectionTitle>工作 / 实习经历</SectionTitle>
+            <SectionTitle icon={<BriefcaseIcon className="h-4 w-4" />}>
+              工作 / 实习经历
+            </SectionTitle>
             <ul className="flex flex-col gap-4">
               {experience.map((item) => (
                 <li
                   key={item.title}
-                  className="flex flex-col gap-1 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40"
+                  className="glass flex flex-col gap-1 rounded-2xl p-5"
                 >
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-medium">{item.title}</h3>
@@ -97,8 +114,10 @@ export default function ResumePage() {
 
         <div className="flex flex-col gap-8 sm:gap-10">
           <section className="flex flex-col gap-4">
-            <SectionTitle>技能</SectionTitle>
-            <ul className="flex flex-col gap-3 rounded-2xl border border-zinc-200 bg-white/60 p-5 dark:border-zinc-800 dark:bg-zinc-900/40">
+            <SectionTitle icon={<LayersIcon className="h-4 w-4" />}>
+              技能
+            </SectionTitle>
+            <ul className="glass flex flex-col gap-3 rounded-2xl p-5">
               {skills.map((group) => (
                 <li
                   key={group.category}
@@ -116,21 +135,25 @@ export default function ResumePage() {
           </section>
 
           <section className="flex flex-col gap-4">
-            <SectionTitle>联系方式</SectionTitle>
+            <SectionTitle icon={<MailIcon className="h-4 w-4" />}>
+              联系方式
+            </SectionTitle>
             <div className="flex flex-wrap gap-3">
               <a
                 href={`mailto:${site.email}`}
-                className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
+                className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors hover:text-accent"
               >
+                <MailIcon className="h-4 w-4 text-accent" />
                 {site.email}
               </a>
               <a
                 href={site.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-zinc-200 px-4 py-2 text-sm transition-colors hover:border-accent hover:text-accent dark:border-zinc-700"
+                className="glass inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm transition-colors hover:text-accent"
               >
-                {site.github}
+                <GitHubIcon className="h-4 w-4" />
+                GitHub
               </a>
             </div>
           </section>
